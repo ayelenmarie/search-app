@@ -10,8 +10,6 @@ exports.getItems = (query) => {
   return axios
     .get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=4`)
     .then((response) => {
-      // TODO: delete dataRaw from response
-      const dataRaw = response.data;
       const filteredCategories = _.filter(response.data.available_filters, {
         id: 'category',
       });
@@ -34,7 +32,6 @@ exports.getItems = (query) => {
 
       return {
         author,
-        dataRaw,
         categories,
         items,
       };

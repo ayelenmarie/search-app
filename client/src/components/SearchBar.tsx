@@ -13,13 +13,10 @@ type SearchBarProps = {
 export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState<string>('');
 
-  console.log('VALUE', inputValue);
-
   const handleSubmit = useCallback(
     (value: React.FormEvent<HTMLFormElement>) => {
       value.preventDefault();
       onSubmit(inputValue);
-      console.log('SUBMIT', onSubmit);
     },
     [onSubmit, inputValue]
   );
@@ -37,11 +34,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
             setInputValue(e.currentTarget.value)
           }
         />
-        <Link to={`/list${inputValue}`}>
-          <ButtonContainer>
-            <img src={Search} alt="Buscar" />
-          </ButtonContainer>
-        </Link>
+        <ButtonContainer>
+          <img src={Search} alt="Buscar" />
+        </ButtonContainer>
       </Form>
     </Container>
   );
@@ -65,8 +60,8 @@ const Form = styled.form`
   margin-left: 32px;
 `;
 const SearchInput = styled.input`
-  width: 70%;
   border: none;
+  width: 60vw;
   padding: 8px 16px 8px 16px;
   font-size: 18px;
   ::placeholder {
