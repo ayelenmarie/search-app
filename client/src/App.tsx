@@ -1,14 +1,15 @@
-import { useCallback } from 'react';
-import { SearchBar } from './components/SearchBar';
+import { Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import List from './pages/List';
 
 const App: React.FC = () => {
-  const handleSearch = useCallback((value) => {
-    console.log('CLICK!', value);
-  }, []);
   return (
-    <>
-      <SearchBar onClick={handleSearch} />
-    </>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/list:query" component={List} />
+      </Switch>
+    </div>
   );
 };
 
