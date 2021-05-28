@@ -8,9 +8,10 @@ const author = {
 
 exports.getItems = (query) => {
   return axios
-    .get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}`)
+    .get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=4`)
     .then((response) => {
       console.log('LA RESPONSE', response.data);
+      // TODO: delete dataRaw from response
       const dataRaw = response.data;
       const filteredCategories = _.filter(response.data.available_filters, {
         id: 'category',

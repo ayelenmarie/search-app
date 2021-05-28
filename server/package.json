@@ -12,8 +12,10 @@
   "author": "Ayelen Guini",
   "license": "ISC",
   "dependencies": {
+    "@types/node-fetch": "^2.5.10",
     "axios": "^0.21.1",
     "concurrently": "^6.2.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0"

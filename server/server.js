@@ -1,8 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const apiClient = require('./apiClient');
+var cors = require('cors');
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 8080;
 
 // This is a HTTP request logger
