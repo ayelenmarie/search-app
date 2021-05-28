@@ -18,4 +18,12 @@ app.get('/api/items', (req, res) => {
     .catch((error) => res.status(error.status).send(error));
 });
 
+app.get('/api/items/:id', (req, res) => {
+  console.log('HOLA');
+  apiClient
+    .getItemDetails(req.params.id)
+    .then((item) => res.json(item))
+    .catch((error) => res.status(error.status).send(error));
+});
+
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
