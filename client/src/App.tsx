@@ -3,11 +3,12 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-import List from './pages/List';
+import List from './components/List';
 import ItemDetails from './pages/ItemDetails';
 import { SearchBar } from './components/SearchBar';
 import { Colors } from './style/Colors';
 import { isEmpty } from 'lodash';
+import { Error } from './components/Error';
 
 /*
  * Home App
@@ -66,11 +67,11 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path="/items">
               {hasError ? (
-                <p>ERROR</p>
+                <Error />
               ) : hasResults ? (
                 <List items={itemsListResults.items} />
               ) : (
-                <p>No hay resultados</p>
+                <p>No hay resultados, probá buscando distinto!</p>
               )}
             </Route>
             <Route path="/items/:id" component={ItemDetails} />

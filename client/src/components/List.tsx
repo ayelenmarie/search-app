@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash';
 
-import { ItemType, Item } from '../components/Item';
+import { ItemType, Item } from './Item';
 import styled from 'styled-components';
 import { Colors } from '../style/Colors';
 

@@ -6,6 +6,7 @@ import { Colors } from '../style/Colors';
 import { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import NumberFormat from 'react-number-format';
+import { Error } from '../components/Error';
 
 /*
  * Types
@@ -79,7 +80,7 @@ const ItemDetails = (props: RouteComponentProps<{ id: string }>) => {
         </LoadingContainer>
       ) : (
         <>
-          {hasError && <p>ERROR</p>}
+          {hasError && <Error />}
           {hasItemDetails && (
             <ContentContainer>
               <Image src={itemDetails.picture} />
