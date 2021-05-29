@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { RouteComponentProps } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import { Colors } from '../style/Colors';
 import { useEffect, useState } from 'react';
@@ -73,7 +74,9 @@ const ItemDetails = (props: RouteComponentProps<{ id: string }>) => {
   return (
     <Container>
       {loading ? (
-        <p>LOADING</p>
+        <LoadingContainer>
+          <ClipLoader color={Colors.BLUE} loading={loading} size={150} />
+        </LoadingContainer>
       ) : (
         <>
           {hasError && <p>ERROR</p>}
@@ -112,6 +115,7 @@ const ItemDetails = (props: RouteComponentProps<{ id: string }>) => {
  */
 
 const Container = styled.div`
+  width: 100%;
   display: inline-block;
   padding: 16px;
   margin: 48px;
@@ -120,6 +124,10 @@ const Container = styled.div`
   @media (max-width: 650px) {
     margin: 8px;
   }
+`;
+
+const LoadingContainer = styled.div`
+  text-align: center;
 `;
 
 const ContentContainer = styled.div`

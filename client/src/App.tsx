@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import List from './pages/List';
 import ItemDetails from './pages/ItemDetails';
@@ -57,7 +58,9 @@ const App: React.FC = () => {
     <Container>
       <SearchBar onSubmit={(query: string) => handleSearch(query)} />
       {loading ? (
-        <p>LOADING</p>
+        <LoadingContainer>
+          <ClipLoader color={Colors.BLUE} loading={loading} size={150} />
+        </LoadingContainer>
       ) : (
         <ContentContainer>
           <Switch>
@@ -89,6 +92,10 @@ const Container = styled.div`
   @media (min-width: 650px) {
     height: 100vh;
   }
+`;
+
+const LoadingContainer = styled.div`
+  text-align: center;
 `;
 
 const ContentContainer = styled.div`
