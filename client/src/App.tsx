@@ -20,8 +20,6 @@ const App: React.FC = () => {
   const hasError = !isEmpty(itemsListResults?.error);
   const hasResults = !isEmpty(itemsListResults?.items);
 
-  console.log(hasError);
-
   const getItemsListResults = useCallback(
     (query: string): any => {
       setLoading(true);
@@ -61,18 +59,20 @@ const App: React.FC = () => {
       {loading ? (
         <p>LOADING</p>
       ) : (
-        <Switch>
-          <Route exact path="/items">
-            {hasError ? (
-              <p>ERROR</p>
-            ) : hasResults ? (
-              <List items={itemsListResults.items} />
-            ) : (
-              <p>No hay resultados</p>
-            )}
-          </Route>
-          <Route path="/items/:id" component={ItemDetails} />
-        </Switch>
+        <ContentContainer>
+          <Switch>
+            <Route exact path="/items">
+              {hasError ? (
+                <p>ERROR</p>
+              ) : hasResults ? (
+                <List items={itemsListResults.items} />
+              ) : (
+                <p>No hay resultados</p>
+              )}
+            </Route>
+            <Route path="/items/:id" component={ItemDetails} />
+          </Switch>
+        </ContentContainer>
       )}
     </Container>
   );
@@ -82,11 +82,18 @@ const App: React.FC = () => {
  * Styles
  */
 
-export const Container = styled.div`
-  display: flex;
-  height: 100vh;
+const Container = styled.div`
   flex-direction: column;
   background-color: ${Colors.GREY_300};
+
+  @media (min-width: 650px) {
+    height: 100vh;
+  }
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export default App;

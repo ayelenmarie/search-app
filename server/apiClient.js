@@ -61,7 +61,7 @@ exports.getItemDetails = async (query) => {
         decimals: item.data.price % 1,
       },
       picture: item.data.pictures[0].url,
-      condition: item.data.condition,
+      condition: item.data.condition === 'new' ? 'Nuevo' : 'Usado',
       freeShipping: item.data.shipping.free_shipping,
       soldQuantity: item.data.sold_quantity,
       description: description.data.plain_text,

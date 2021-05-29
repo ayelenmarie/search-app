@@ -45,11 +45,12 @@ export const Item: React.FC<ItemProps> = ({ item }) => {
           <Image src={item.picture} alt={item.title} />
           <PriceContainer>
             <NumberFormat
+              // Asuming we only need round part of number, I used amount alone
               value={item.price.amount}
               displayType={'text'}
               decimalSeparator=","
               thousandSeparator="."
-              prefix={'$'}
+              prefix={'$ '}
             />
             {hasFreeShipping && (
               <ShippingTag src={Shipping} alt="Envío gratis" />
@@ -84,6 +85,11 @@ const ContentContainer = styled.div`
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 1fr;
   align-content: start;
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr;
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -99,23 +105,35 @@ const ShippingTag = styled.img`
 
 const Image = styled.img`
   margin-right: 16px;
-  max-width: 100px;
-  max-height: 100px;
-  width: auto;
-  height: auto;
+  width: 100px;
+  height: 100px;
   grid-row-start: 1;
   grid-row-end: 3;
   justify-self: center;
+
+  @media (max-width: 650px) {
+    grid-row: 1 / 2;
+    width: 150px;
+    height: 150px;
+  }
 `;
 
 const Title = styled.p`
   font-size: 18px;
   margin: 0px;
   align-self: start;
+  @media (max-width: 650px) {
+    order: -2;
+  }
 `;
 
 const Location = styled.p`
   margin-left: 16px;
   font-size: 12px;
   color: ${Colors.GREY_500};
+
+  @media (max-width: 650px) {
+    order: -4;
+    margin: 0;
+  }
 `;

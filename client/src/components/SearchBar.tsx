@@ -17,6 +17,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
     (value: React.FormEvent<HTMLFormElement>) => {
       value.preventDefault();
       onSubmit(inputValue);
+      setInputValue('');
     },
     [onSubmit, inputValue]
   );
@@ -33,6 +34,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setInputValue(e.currentTarget.value)
           }
+          value={inputValue}
         />
         <ButtonContainer>
           <img src={Search} alt="Buscar" />
@@ -69,6 +71,14 @@ const SearchInput = styled.input`
   }
   :focus {
     outline: none;
+  }
+
+  @media (max-width: 650px) {
+    width: 50vw;
+  }
+
+  @media (max-width: 400px) {
+    max-width: 40vw;
   }
 `;
 const ButtonContainer = styled.button`
