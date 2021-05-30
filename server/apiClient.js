@@ -25,7 +25,6 @@ exports.getItems = (query) => {
           location: item.address.state_name,
         };
       });
-      console.log('data', response.data);
 
       const categories = !_.isEmpty(response.data.filters)
         ? response.data.filters[0].values[0].path_from_root.map(

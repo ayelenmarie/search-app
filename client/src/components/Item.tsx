@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 
 import { Colors } from '../style/Colors';
 import Shipping from '../images/ic_shipping.png';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 /*
  * Types
@@ -32,35 +32,29 @@ type ItemProps = {
  */
 
 export const Item: React.FC<ItemProps> = ({ item }) => {
+  let history = useHistory();
+
   const hasFreeShipping = item?.freeShipping;
 
   return (
-    <ContainerLink
-      to={{
-        pathname: `/items/${item.id}`,
-      }}
-    >
-      <Container>
-        <ContentContainer>
-          <Image src={item.picture} alt={item.title} />
-          <PriceContainer>
-            <NumberFormat
-              // Asuming we only need round part of number, I used amount alone
-              value={item.price.amount}
-              displayType={'text'}
-              decimalSeparator=","
-              thousandSeparator="."
-              prefix={'$ '}
-            />
-            {hasFreeShipping && (
-              <ShippingTag src={Shipping} alt="Envío gratis" />
-            )}
-          </PriceContainer>
-          <Location>{item.location}</Location>
-          <Title>{item.title}</Title>
-        </ContentContainer>
-      </Container>
-    </ContainerLink>
+    <ContainerButton onClick={() => history.push(`/items/${item.id}`)}>
+      <ContentContainer>
+        <Image src={item.picture} alt={item.title} />
+        <PriceContainer>
+          <NumberFormat
+            // Asuming we only need round part of number, I used amount alone
+            value={item.price.amount}
+            displayType={'text'}
+            decimalSeparator=","
+            thousandSeparator="."
+            prefix={'$ '}
+          />
+          {hasFreeShipping && <ShippingTag src={Shipping} alt="Envío gratis" />}
+        </PriceContainer>
+        <Location>{item.location}</Location>
+        <Title>{item.title}</Title>
+      </ContentContainer>
+    </ContainerButton>
   );
 };
 
@@ -68,33 +62,33 @@ export const Item: React.FC<ItemProps> = ({ item }) => {
  * Styles
  */
 
-const ContainerLink = styled(Link)`
+const ContainerButton = styled.button`
+  border: none;
   text-decoration: none;
   color: inherit;
-`;
-
-const Container = styled.div`
-  padding: 8px;
-  margin: 16px;
+  padding: 0;
   background-color: ${Colors.WHITE};
   border-bottom: 1px solid ${Colors.GREY_300};
 `;
 
 const ContentContainer = styled.div`
+  padding: 8px;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 25% 75%;
   align-content: start;
 
   @media (max-width: 650px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 100%;
   }
 `;
 
 const PriceContainer = styled.div`
   display: flex;
   flex-direction: row;
+  @media (max-width: 650px) {
+    padding-top: 16px;
+  }
 `;
 
 const ShippingTag = styled.img`
@@ -121,19 +115,23 @@ const Image = styled.img`
 const Title = styled.p`
   font-size: 18px;
   margin: 0px;
-  align-self: start;
+  text-align: start;
   @media (max-width: 650px) {
     order: -2;
+    padding-top: 16px;
   }
 `;
 
 const Location = styled.p`
-  margin-left: 16px;
+  margin: 0;
   font-size: 12px;
   color: ${Colors.GREY_500};
+  text-align: end;
 
   @media (max-width: 650px) {
     order: -4;
     margin: 0;
+    padding-top: 8px;
+    text-align: start;
   }
 `;
