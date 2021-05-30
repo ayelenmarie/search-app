@@ -93,7 +93,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <Container data-test-id="App">
+    <Container>
       <SearchBar onSubmit={(query: string) => handleSearch(query)} />
       <ContentContainer>
         {loading ? (

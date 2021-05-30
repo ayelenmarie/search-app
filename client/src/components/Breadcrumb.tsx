@@ -22,7 +22,7 @@ export const Breadcrumb = ({ categories }: BreadcrumbProps) => {
         categories?.map((category: string, index: number, arr) => {
           return (
             <>
-              {index != arr.length - 1 ? (
+              {index !== arr.length - 1 ? (
                 <>
                   <Category key={index}>{category}</Category>
                   <Arrow src={ArrowIcon} />

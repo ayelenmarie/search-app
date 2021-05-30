@@ -23,7 +23,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   );
 
   return (
-    <Container>
+    <Container data-test-id="SearchBar">
       <WidthContainer>
         <Link to="/">
           <img src={Logo} alt="Logo Mercado Libre" />
@@ -36,6 +36,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
               setInputValue(e.currentTarget.value)
             }
             value={inputValue}
+            aria-label="search-input"
           />
           <ButtonContainer>
             <img src={Search} alt="Buscar" />

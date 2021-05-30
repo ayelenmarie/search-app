@@ -48,6 +48,7 @@ export const Item: React.FC<ItemProps> = ({ item }) => {
             decimalSeparator=","
             thousandSeparator="."
             prefix={'$ '}
+            data-testid="Price"
           />
           {hasFreeShipping && <ShippingTag src={Shipping} alt="Envío gratis" />}
         </PriceContainer>
