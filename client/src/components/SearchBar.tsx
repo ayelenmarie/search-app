@@ -41,7 +41,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             value={inputValue}
             aria-label="search-input"
           />
-          <ButtonContainer>
+          <ButtonContainer aria-label="search-button">
             <img src={Search} alt="Buscar" />
           </ButtonContainer>
         </Form>

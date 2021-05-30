@@ -1,10 +1,11 @@
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RouteComponentProps } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
+import axios from 'axios';
+import { isEmpty } from 'lodash';
 
 import { Colors } from '../style/Colors';
-import { useEffect, useState } from 'react';
-import { isEmpty } from 'lodash';
 import NumberFormat from 'react-number-format';
 import { Error } from '../components/Error';
 
@@ -55,22 +56,24 @@ const ItemDetails = (props: RouteComponentProps<{ id: string }>) => {
   const hasError = !isEmpty(error);
   const hasItemDetails = !isEmpty(itemDetails);
 
-  useEffect(() => {
+  const getItemDetails = useCallback(async () => {
     setLoading(true);
-    fetch(`http://localhost:8080/api/items/${id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setLoading(false);
-        if (res.error) {
-          setError(res.error);
-        } else {
-          setItemDetails(res.itemDetails);
-        }
-      })
-      .catch((error) => setError(error));
+    try {
+      const response = await axios.get(`http://localhost:8080/api/items/${id}`);
+      setLoading(false);
+      if (response.data.error) {
+        setError(response.data.error);
+      } else {
+        setItemDetails(response.data.itemDetails);
+      }
+    } catch (error) {
+      setError(error);
+    }
   }, [id]);
+
+  useEffect(() => {
+    getItemDetails();
+  }, [getItemDetails]);
 
   return (
     <Container>

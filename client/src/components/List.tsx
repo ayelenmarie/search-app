@@ -11,7 +11,7 @@ type ListProps = {
 const List: React.FC<ListProps> = ({ items }) => {
   const hasItems = !isEmpty(items);
   return (
-    <ContentContainer>
+    <ContentContainer aria-label="search-results">
       {hasItems &&
         items?.map((item: any, id: number) => {
           return <Item item={item} key={id} />;

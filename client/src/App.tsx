@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ClipLoader from 'react-spinners/ClipLoader';
+import axios from 'axios';
 
 import List from './components/List';
 import ItemDetails from './pages/ItemDetails';
@@ -11,6 +12,15 @@ import { isEmpty } from 'lodash';
 import { Error } from './components/Error';
 import { Breadcrumb } from './components/Breadcrumb';
 import { ItemType } from './components/Item';
+
+type ItemsListResponse = {
+  config: any;
+  data: ItemsListResults;
+  headers: any;
+  request: any;
+  status: number;
+  statusText: string;
+};
 
 type ItemsListResults = {
   author: {
@@ -60,27 +70,25 @@ const App: React.FC = () => {
   const hasResults = !isEmpty(itemsListResults?.items);
 
   const getItemsListResults = useCallback(
-    (query: string): any => {
+    async (query: string) => {
       setLoading(true);
-      fetch(`http://localhost:8080/api/items?q=${query}`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((response) => {
-          if (response.error) {
-            console.error(response);
-            setLoading(false);
-            setItemsListResults(response);
-          } else {
-            setLoading(false);
-            setItemsListResults(response);
-            history.push(`/items?search=${query}`);
-          }
-        })
-        .catch((error) => {
+      try {
+        const response: ItemsListResponse = await axios.get(
+          `http://localhost:8080/api/items?q=${query}`
+        );
+        if (response.data.error) {
+          console.error(response);
           setLoading(false);
-          setItemsListResults(error);
-        });
+          setItemsListResults(response.data);
+        } else {
+          setLoading(false);
+          setItemsListResults(response.data);
+          history.push(`/items?search=${query}`);
+        }
+      } catch (error) {
+        setLoading(false);
+        setItemsListResults(error);
+      }
     },
     [history]
   );
@@ -91,10 +99,11 @@ const App: React.FC = () => {
     },
     [getItemsListResults]
   );
+
   const handleHomeClick = useCallback(() => {
     history.push('/');
     setItemsListResults(ItemsListDefault);
-  }, []);
+  }, [history]);
 
   return (
     <Container>
