@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 const author = {
   name: 'Ayelen',
-  lastname: 'Guini',
+  lastName: 'Guini',
 };
 
 exports.getItems = (query) => {

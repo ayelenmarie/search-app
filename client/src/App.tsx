@@ -10,6 +10,41 @@ import { Colors } from './style/Colors';
 import { isEmpty } from 'lodash';
 import { Error } from './components/Error';
 import { Breadcrumb } from './components/Breadcrumb';
+import { ItemType } from './components/Item';
+
+type ItemsListResults = {
+  author: {
+    name: string;
+    lastName: string;
+  };
+  categories: string[];
+  items: ItemType[];
+  error?: string;
+  info?: ItemType;
+};
+
+const ItemDefault: ItemType = {
+  condition: '',
+  freeShipping: false,
+  id: '',
+  picture: '',
+  price: {
+    currency: '',
+    amount: 0,
+    decimals: 0,
+  },
+  title: '',
+  location: '',
+};
+
+const ItemsListDefault: ItemsListResults = {
+  author: {
+    name: '',
+    lastName: '',
+  },
+  categories: [],
+  items: [ItemDefault],
+};
 
 /*
  * Home App
@@ -18,7 +53,8 @@ import { Breadcrumb } from './components/Breadcrumb';
 const App: React.FC = () => {
   let history = useHistory();
   const [loading, setLoading] = useState<boolean>(false);
-  const [itemsListResults, setItemsListResults] = useState<any>();
+  const [itemsListResults, setItemsListResults] =
+    useState<ItemsListResults>(ItemsListDefault);
 
   const hasError = !isEmpty(itemsListResults?.error);
   const hasResults = !isEmpty(itemsListResults?.items);
