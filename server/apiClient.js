@@ -10,10 +10,6 @@ exports.getItems = (query) => {
   return axios
     .get(`https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=4`)
     .then((response) => {
-      const filteredCategories = _.filter(response.data.available_filters, {
-        id: 'category',
-      });
-      const categories = filteredCategories[0].values;
       const items = response.data.results.map((item) => {
         return {
           id: item.id,
@@ -29,6 +25,13 @@ exports.getItems = (query) => {
           location: item.address.state_name,
         };
       });
+      console.log('data', response.data);
+
+      const categories = !_.isEmpty(response.data.filters)
+        ? response.data.filters[0].values[0].path_from_root.map(
+            (value) => value.name
+          )
+        : [];
 
       return {
         author,

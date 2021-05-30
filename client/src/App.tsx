@@ -9,6 +9,7 @@ import { SearchBar } from './components/SearchBar';
 import { Colors } from './style/Colors';
 import { isEmpty } from 'lodash';
 import { Error } from './components/Error';
+import { Breadcrumb } from './components/Breadcrumb';
 
 /*
  * Home App
@@ -58,26 +59,29 @@ const App: React.FC = () => {
   return (
     <Container>
       <SearchBar onSubmit={(query: string) => handleSearch(query)} />
-      {loading ? (
-        <LoadingContainer>
-          <ClipLoader color={Colors.BLUE} loading={loading} size={150} />
-        </LoadingContainer>
-      ) : (
-        <ContentContainer>
-          <Switch>
-            <Route exact path="/items">
-              {hasError ? (
-                <Error />
-              ) : hasResults ? (
-                <List items={itemsListResults.items} />
-              ) : (
-                <p>No hay resultados, probá buscando distinto!</p>
-              )}
-            </Route>
-            <Route path="/items/:id" component={ItemDetails} />
-          </Switch>
-        </ContentContainer>
-      )}
+      <ContentContainer>
+        {loading ? (
+          <LoadingContainer>
+            <ClipLoader color={Colors.BLUE} loading={loading} size={150} />
+          </LoadingContainer>
+        ) : (
+          <ListContainer>
+            <Breadcrumb categories={itemsListResults.categories} />
+            <Switch>
+              <Route exact path="/items">
+                {hasError ? (
+                  <Error />
+                ) : hasResults ? (
+                  <List items={itemsListResults.items} />
+                ) : (
+                  <p>No hay resultados, probá buscando distinto!</p>
+                )}
+              </Route>
+              <Route path="/items/:id" component={ItemDetails} />
+            </Switch>
+          </ListContainer>
+        )}
+      </ContentContainer>
     </Container>
   );
 };
@@ -87,7 +91,6 @@ const App: React.FC = () => {
  */
 
 const Container = styled.div`
-  flex-direction: column;
   background-color: ${Colors.GREY_300};
 
   @media (min-width: 650px) {
@@ -102,6 +105,11 @@ const LoadingContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
+  padding: 16px 48px 48px 48px;
+`;
+
+const ListContainer = styled.div`
+  width: 70%;
 `;
 
 export default App;

@@ -119,7 +119,6 @@ const Container = styled.div`
   width: 100%;
   display: inline-block;
   padding: 16px;
-  margin: 48px;
   background-color: ${Colors.WHITE};
 
   @media (max-width: 650px) {
@@ -133,10 +132,10 @@ const LoadingContainer = styled.div`
 
 const ContentContainer = styled.div`
   display: grid;
-  grid-template-columns: 6fr 4fr;
+  grid-template-columns: 60% 40%;
   align-content: start;
 
-  @media (max-width: 650px) {
+  @media (max-width: 1000px) {
     grid-template-columns: 1fr;
     justify-items: center;
   }
@@ -166,15 +165,11 @@ const Title = styled.p`
 `;
 
 const Image = styled.img`
-  max-width: 50vw;
+  max-width: 380px;
   width: auto;
   height: auto;
 
   @media (max-width: 1000px) {
-    max-width: 380px;
-  }
-
-  @media (max-width: 650px) {
     max-width: 30vw;
     justify-self: center;
   }
@@ -188,14 +183,14 @@ const Price = styled(NumberFormat)`
 
 const Button = styled.button`
   margin-top: 32px;
-  width: 250px;
+  max-width: 250px;
   height: 5vh;
   background-color: ${Colors.BLUE};
   border: none;
   border-radius: 4px;
-  @media (max-width: 650px) {
-    min-width: 150px;
-    max-width: 200px;
+
+  @media (max-width: 1000px) {
+    width: 250px;
     align-self: center;
   }
 `;
@@ -207,12 +202,13 @@ const ButtonText = styled.p`
 `;
 
 const DescriptionContainer = styled.div`
+  max-width: 50vw;
   grid-row-start: 4;
   grid-row-end: 5;
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 1;
 
-  @media (max-width: 650px) {
+  @media (max-width: 1000px) {
     grid-row-start: 3;
     grid-row-end: 4;
     grid-column-start: 1;
@@ -228,9 +224,7 @@ const DescriptionTitle = styled.p`
 `;
 
 const Description = styled.p`
-  width: 90vw;
   font-size: 16px;
-  margin: 0 !important;
   padding: 32px 0 0 0;
   color: ${Colors.GREY_700};
   white-space: break-spaces;

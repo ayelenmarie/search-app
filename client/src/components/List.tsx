@@ -12,12 +12,10 @@ const List: React.FC<ListProps> = ({ items }) => {
   const hasItems = !isEmpty(items);
   return (
     <ContentContainer>
-      <ItemsList>
-        {hasItems &&
-          items?.map((item: any) => {
-            return <Item item={item} />;
-          })}
-      </ItemsList>
+      {hasItems &&
+        items?.map((item: any, id: number) => {
+          return <Item item={item} key={id} />;
+        })}
     </ContentContainer>
   );
 };
@@ -27,15 +25,8 @@ const List: React.FC<ListProps> = ({ items }) => {
  */
 
 const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 32px;
-`;
-
-const ItemsList = styled.div`
   background-color: ${Colors.WHITE};
-  width: 75%;
+  padding: 16px;
 `;
 
 export default List;

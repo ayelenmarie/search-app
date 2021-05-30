@@ -1,9 +1,9 @@
-/*
- * Styles
- */
-
 import styled from 'styled-components';
 import { Colors } from '../style/Colors';
+
+/*
+ * Error Component
+ */
 
 export const Error = () => {
   return (

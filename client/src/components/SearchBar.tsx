@@ -24,22 +24,24 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
 
   return (
     <Container>
-      <Link to="/">
-        <img src={Logo} alt="Logo Mercado Libre" />
-      </Link>
-      <Form onSubmit={(value) => handleSubmit(value)}>
-        <SearchInput
-          type="text"
-          placeholder="Nunca dejes de buscar"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setInputValue(e.currentTarget.value)
-          }
-          value={inputValue}
-        />
-        <ButtonContainer>
-          <img src={Search} alt="Buscar" />
-        </ButtonContainer>
-      </Form>
+      <WidthContainer>
+        <Link to="/">
+          <img src={Logo} alt="Logo Mercado Libre" />
+        </Link>
+        <Form onSubmit={(value) => handleSubmit(value)}>
+          <SearchInput
+            type="text"
+            placeholder="Nunca dejes de buscar"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setInputValue(e.currentTarget.value)
+            }
+            value={inputValue}
+          />
+          <ButtonContainer>
+            <img src={Search} alt="Buscar" />
+          </ButtonContainer>
+        </Form>
+      </WidthContainer>
     </Container>
   );
 };
@@ -50,20 +52,28 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
 
 const Container = styled.div`
   padding: 8px;
+  background-color: ${Colors.YELLOW};
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  background-color: ${Colors.YELLOW};
 `;
+
+const WidthContainer = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+`;
+
 const Form = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin-left: 32px;
 `;
+
 const SearchInput = styled.input`
+  width: 100%;
   border: none;
-  width: 60vw;
   padding: 8px 16px 8px 16px;
   font-size: 18px;
   ::placeholder {
@@ -72,15 +82,8 @@ const SearchInput = styled.input`
   :focus {
     outline: none;
   }
-
-  @media (max-width: 650px) {
-    width: 50vw;
-  }
-
-  @media (max-width: 400px) {
-    max-width: 40vw;
-  }
 `;
+
 const ButtonContainer = styled.button`
   border: none;
   display: flex;
