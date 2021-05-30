@@ -91,31 +91,40 @@ const App: React.FC = () => {
     },
     [getItemsListResults]
   );
+  const handleHomeClick = useCallback(() => {
+    history.push('/');
+    setItemsListResults(ItemsListDefault);
+  }, []);
 
   return (
     <Container>
-      <SearchBar onSubmit={(query: string) => handleSearch(query)} />
+      <SearchBar
+        onSubmit={(query: string) => handleSearch(query)}
+        onHomeClick={handleHomeClick}
+      />
       <ContentContainer>
         {loading ? (
           <LoadingContainer>
             <ClipLoader color={Colors.BLUE} loading={loading} size={150} />
           </LoadingContainer>
         ) : (
-          <ListContainer>
-            <Breadcrumb categories={itemsListResults.categories} />
-            <Switch>
-              <Route exact path="/items">
-                {hasError ? (
-                  <Error />
-                ) : hasResults ? (
-                  <List items={itemsListResults.items} />
-                ) : (
-                  <p>No hay resultados, probá buscando distinto!</p>
-                )}
-              </Route>
-              <Route path="/items/:id" component={ItemDetails} />
-            </Switch>
-          </ListContainer>
+          <>
+            <ListContainer>
+              <Breadcrumb categories={itemsListResults.categories} />
+              <Switch>
+                <Route exact path="/items">
+                  {hasError ? (
+                    <Error />
+                  ) : hasResults ? (
+                    <List items={itemsListResults.items} />
+                  ) : (
+                    <p>No hay resultados, probá buscando distinto!</p>
+                  )}
+                </Route>
+                <Route path="/items/:id" component={ItemDetails} />
+              </Switch>
+            </ListContainer>
+          </>
         )}
       </ContentContainer>
     </Container>

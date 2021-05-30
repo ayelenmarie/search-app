@@ -1,5 +1,4 @@
 import { ChangeEvent, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Colors } from '../style/Colors';
@@ -8,9 +7,13 @@ import Search from '../images/ic_Search.png';
 
 type SearchBarProps = {
   onSubmit: (value: string) => void;
+  onHomeClick: () => void;
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({
+  onSubmit,
+  onHomeClick,
+}) => {
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleSubmit = useCallback(
@@ -25,9 +28,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   return (
     <Container data-test-id="SearchBar">
       <WidthContainer>
-        <Link to="/">
+        <LogoButton onClick={onHomeClick}>
           <img src={Logo} alt="Logo Mercado Libre" />
-        </Link>
+        </LogoButton>
         <Form onSubmit={(value) => handleSubmit(value)}>
           <SearchInput
             type="text"
@@ -63,6 +66,11 @@ const WidthContainer = styled.div`
   width: 70%;
   display: flex;
   flex-direction: row;
+`;
+
+const LogoButton = styled.button`
+  border: none;
+  background-color: transparent;
 `;
 
 const Form = styled.form`
