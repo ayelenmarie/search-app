@@ -26,7 +26,7 @@ You'll notice that inside the `/server` dependencies, there is a package called 
 
 This project was developed by using Node.js, React.js and Styled Components.
 
-- I've been using Styled Components for a while now and the more I do, the more I like it. Beign able to create styled components directly instead of using SASS or even CSS over HTML tags filled with classes and ids is cleaner and more effective. It also helps debugging styles better, make UI structures faster, focusing more on the outcome than the process itself, and the scoping mindset that it provides follows React's arquitecture directly.
+- I've been using Styled Components for a while now and the more I do, the more I like it. Being able to create styled components directly instead of using SASS or even CSS over HTML tags filled with classes and ids is cleaner and more effective. It also helps debugging styles better, make UI structures faster, focusing more on the outcome than the process itself, and the scoping mindset that it provides follows React's arquitecture directly.
 
 - Given the size of this application I did not use any managing state library such as Redux or Context API. I decided to stick with `useState` hook in a functional component approach.
 
@@ -45,4 +45,4 @@ As a user, I want to:
 - Add more tests mocking the data.
 - Add i18n to handle texts and possible translations.
 
-Made by [Ayelen Guini](https://www.linkedin.com/in/ayelenmarie/) with 💛 and 😸!
+Made by [Ayelen Guini](https://www.linkedin.com/in/ayelenmarie/) with 💛  and 😸!
