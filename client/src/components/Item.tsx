@@ -81,6 +81,7 @@ const ContentContainer = styled.div`
 
   @media (max-width: 650px) {
     grid-template-columns: 100%;
+    grid-template-rows: 1fr;
   }
 `;
 
