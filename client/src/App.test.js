@@ -3,7 +3,7 @@ import {
   fireEvent,
   screen,
   act,
-  cleanup,
+  container,
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -11,8 +11,6 @@ import axios from 'axios';
 import App from './App';
 
 jest.mock('axios');
-
-afterEach(cleanup);
 
 beforeEach(() =>
   act(() => {
