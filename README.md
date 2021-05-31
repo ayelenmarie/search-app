@@ -31,3 +31,18 @@ This project was developed by using Node.js, React.js and Styled Components.
 - Given the size of this application I did not use any managing state library such as Redux or Context API. I decided to stick with `useState` hook in a functional component approach.
 
 - For the navigation of this app I decided to go for [React Router](https://www.npmjs.com/package/react-router-dom) which gives a very straightforward approach to switching between pages and keeping state in higher components, leaving UI components completly agnostic from the 'business logic'.
+
+## Use cases
+
+As a user, I want to:
+
+- Be able to type in a product in the search bar and get a list of products according to my search.
+- See the details and description of a specific product.
+- Look at the category path my search follows in the breadcrumb.
+
+## To-do list
+
+- Add more tests mocking the data.
+- Add i18n to handle texts and possible translations.
+
+Made by [Ayelen Guini](https://www.linkedin.com/in/ayelenmarie/) with 💛 and 😸!
