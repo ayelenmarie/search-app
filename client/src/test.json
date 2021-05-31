@@ -1,0 +1,63 @@
+{
+    "author": {
+        "name":"Ayelen",
+        "lastName":"Guini"
+        },
+    "categories": [
+        "Consolas y Videojuegos",
+        "Consolas"
+    ],
+    "items": [
+        {
+            "id":"MLA916025694",
+            "title":"Nintendo Switch 32gb Standard  Color Rojo Neón, Azul Neón Y Negro",
+            "price": {
+                "currency":"ARS",
+                "amount":75999,
+                "decimals":0.05000000000291038
+                },
+            "picture":"http://http2.mlstatic.com/D_883371-MLA32731749246_112019-I.jpg",
+            "condition":"new",
+            "freeShipping":true,
+            "location":"Capital Federal"
+        },
+        {
+            "id":"MLA920235742",
+            "title":"Nintendo Switch 32gb Animal Crossing  Color Verde Y Azul Pastel",
+            "price": {
+                "currency":"ARS",
+                "amount":69598,
+                "decimals":0
+                },
+            "picture":"http://http2.mlstatic.com/D_913685-MLA41956780418_052020-I.jpg",
+            "condition":"new",
+            "freeShipping":true,
+            "location":"Capital Federal"
+            },
+        {
+            "id":"MLA909923136",
+            "title":"Nintendo Wii 512mb Standard  Color Blanco",
+            "price": {
+                "currency":"ARS",
+                "amount":16700,
+                "decimals":0
+                },
+            "picture":"http://http2.mlstatic.com/D_910960-MLA32731749007_112019-I.jpg",
+            "condition":"new",
+            "freeShipping":true,
+            "location":"Capital Federal"
+            },
+        {
+            "id":"MLA913369030",
+            "title":"Nintendo Game & Watch Super Mario Bros.  Color Rojo Y Dorado",
+            "price": {
+                "currency":"ARS",
+                "amount":13400,
+                "decimals":0
+                },
+            "picture":"http://http2.mlstatic.com/D_986801-MLA45257971560_032021-I.jpg",
+            "condition":"new",
+            "freeShipping":true,
+            "location":"Buenos Aires"
+        }]
+}
